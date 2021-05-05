@@ -1,8 +1,7 @@
-// import _ from 'lodash-es';
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
 
-const _ = require('lodash');
-
-// sort users array
 const users = [
     {
         id: 1,
@@ -26,9 +25,11 @@ const users = [
     },
 ];
 
-const sorted = _.sortBy(users, ['name', 'email']);
-console.log(sorted);
-
-const u2 = _.cloneDeep(users);
-u2[0].name = 'Gábor';
-console.log(users);
+console.time('Writing');
+fs.writeFile(path.join(__dirname, 'data', 'users.json'), JSON.stringify(users, null, 4), 'utf8', (err) => {
+    if (err) {
+        return console.error(err);
+    }
+    console.log('Write successful')
+    console.timeEnd('Writing');
+});
