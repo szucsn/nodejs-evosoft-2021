@@ -1,2 +1,3 @@
 node-module-system/node_modules
 .vscode
+**/node_modules
